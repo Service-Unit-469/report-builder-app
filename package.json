@@ -1,5 +1,6 @@
 {
   "name": "report-builder-app",
+  "productName": "GS Data Chair Report Builder",
   "description": "For running searches and reports for Girl Scout Service Unit Data Chair needs",
   "author": "Dan Klco <daniel.klco@gmail.com>",
   "version": "1.0.0-SNAPSHOT",
@@ -24,11 +25,13 @@
     "svelte": "^3.46.4",
     "svelte-check": "^1.0.0",
     "svelte-preprocess": "^4.0.0",
-    "@service-unit-469/looker-downloader": "^1.0.0",
-    "@service-unit-469/report-builder": "^1.1.0",
-    "electron": "^17.0.1",
+    "electron": "^17.0.1"
+  },
+  "dependencies": {
     "filesize": "^8.0.7",
     "keytar": "^7.9.0",
-    "winston": "^3.6.0"
+    "winston": "^3.6.0",
+    "@service-unit-469/looker-downloader": "^1.0.0",
+    "@service-unit-469/report-builder": "^1.1.0"
   }
 }
