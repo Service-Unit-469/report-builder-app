@@ -1,6 +1,8 @@
 {
-  "name": "electron-app-svelte",
-  "version": "1.0.0",
+  "name": "report-builder-app",
+  "description": "For running searches and reports for Girl Scout Service Unit Data Chair needs",
+  "author": "Dan Klco <daniel.klco@gmail.com>",
+  "version": "1.0.0-SNAPSHOT",
   "main": "src/index.js",
   "scripts": {
     "build": "node_modules/rollup/dist/bin/rollup  -c",
@@ -21,9 +23,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "svelte": "^3.46.4",
     "svelte-check": "^1.0.0",
-    "svelte-preprocess": "^4.0.0"
-  },
-  "dependencies": {
+    "svelte-preprocess": "^4.0.0",
     "@service-unit-469/looker-downloader": "^1.0.0",
     "@service-unit-469/report-builder": "^1.1.0",
     "electron": "^17.0.1",
