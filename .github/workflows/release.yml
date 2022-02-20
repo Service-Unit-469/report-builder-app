@@ -13,6 +13,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+        env:
+          PYTHON_VERSION: 3.8
+      - name: Add msbuild to PATH
+        if: matrix.os == 'windows-latest'
+        uses: microsoft/setup-msbuild@v1.0.0
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
