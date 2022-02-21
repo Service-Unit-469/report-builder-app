@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Install Node Modules
+        run: npm ci
       - name: Build Electron app
         run: npm run build
       - name: Package Electron app
