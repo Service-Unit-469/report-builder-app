@@ -13,6 +13,18 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Install node tools
+        if: runner.os == 'Windows'
+        run: npm install --global --production windows-build-tools@4.0.0
+      - name: Install node-gyp
+        if: runner.os == 'Windows'
+        run: npm install --global node-gyp@latest
+      - name: Set node config to use python2.7
+        if: runner.os == 'Windows'
+        run: npm config set python python2.7
+      - name: Work around for Windows Server 2019
+        if: runner.os == 'Windows'
+        run: set path=%path%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin
       - name: Install Node Modules
         run: npm ci
       - name: Build Electron app
