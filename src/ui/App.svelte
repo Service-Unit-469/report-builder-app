@@ -4,6 +4,7 @@
   import Search from "./routes/Search.svelte";
   import Settings from "./routes/Settings.svelte";
   import Sync from "./routes/Sync.svelte";
+  import Troops from "./routes/Troops.svelte";
 
   let currentView = "home";
   let version = "";
@@ -24,28 +25,29 @@
 <main>
   <nav>
     <div>
-      <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="nav-link" href="#" on:click={() => (currentView = "home")}
-        >Home</a
+      <div class="nav-item nav-link" on:click={() => (currentView = "home")}>
+        Home
+      </div>
+      <div class="nav-item nav-link" on:click={() => (currentView = "search")}>
+        Search
+      </div>
+      <div class="nav-item nav-link" on:click={() => (currentView = "reports")}>
+        Reports
+      </div>
+      <div class="nav-item nav-link" on:click={() => (currentView = "troops")}>
+        Troops
+      </div>
+      <div class="nav-item nav-link" on:click={() => (currentView = "sync")}>
+        Sync Looker
+      </div>
+      <div
+        class="nav-item nav-link"
+        on:click={() => (currentView = "settings")}
       >
-      <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="nav-link" href="#" on:click={() => (currentView = "search")}
-        >Search</a
-      >
-      <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="nav-link" href="#" on:click={() => (currentView = "reports")}
-        >Reports</a
-      >
-      <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="nav-link" href="#" on:click={() => (currentView = "sync")}
-        >Sync Looker</a
-      >
-      <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="nav-link" href="#" on:click={() => (currentView = "settings")}
-        >Settings</a
-      >
+        Settings
+      </div>
     </div>
-    <div class="nav-link">
+    <div class="nav-item">
       &copy; 2022 <span
         on:click={() =>
           window.api.send("general/open", `https://www.danklco.com`)}
@@ -56,21 +58,24 @@
     </div>
   </nav>
   <article>
-    <div class={currentView === "home" ? "" : "is-hidden"}>
+    {#if currentView == "home"}
       <Home />
-    </div>
-    <div class={currentView === "search" ? "" : "is-hidden"}>
+    {/if}
+    {#if currentView == "search"}
       <Search />
-    </div>
-    <div class={currentView === "reports" ? "" : "is-hidden"}>
+    {/if}
+    {#if currentView == "reports"}
       <Reports />
-    </div>
+    {/if}
+    {#if currentView == "troops"}
+      <Troops />
+    {/if}
     <div class={currentView === "sync" ? "" : "is-hidden"}>
       <Sync />
     </div>
-    <div class={currentView === "settings" ? "" : "is-hidden"}>
+    {#if currentView == "settings"}
       <Settings />
-    </div>
+    {/if}
   </article>
 </main>
 <dialog id="setup-required">

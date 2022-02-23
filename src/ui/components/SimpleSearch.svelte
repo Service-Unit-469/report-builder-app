@@ -1,5 +1,6 @@
 <script>
-  import { query } from "../stores";
+  export let queryStore;
+  export let parametersStore;
   export let fields;
 
   const operators = [
@@ -33,20 +34,19 @@
     },
   ];
   let negate = false;
-  let parameters = [
-    {
-      field: "Troop_Group",
-      operator: "~=",
-      value: "",
-    },
-  ];
+  let parameters = [];
+  parametersStore.subscribe((np) => {
+    parameters = np;
+  });
   let join = "and";
 
   function addParameter() {
     parameters = parameters.concat({});
+    parametersStore.set(parameters);
   }
   function removeParameter(parameter) {
     parameters = parameters.filter((cur) => cur !== parameter);
+    parametersStore.set(parameters);
   }
   function calculateQuery() {
     let calculated = parameters
@@ -55,7 +55,7 @@
     if (negate) {
       calculated = `not (${calculated})`;
     }
-    query.set(calculated);
+    queryStore.set(calculated);
   }
 </script>
 

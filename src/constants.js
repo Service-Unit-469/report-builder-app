@@ -4,7 +4,14 @@ const path = require("path");
 const APP_FILES_ROOT = path.join(homedir, ".reportbuilder");
 const LOG_FILE = path.join(APP_FILES_ROOT, "app.log");
 const DOWNLOAD_FOLDER = path.join(APP_FILES_ROOT, "downloads");
-const FIELDS_FILE = path.join(DOWNLOAD_FOLDER, "fields.json");
+const FULL_ROSTER_FIELDS_FILE = path.join(
+  DOWNLOAD_FOLDER,
+  "Fields-Full-Roster.json"
+);
+const TROOP_FIELDS_FILE = path.join(
+  DOWNLOAD_FOLDER,
+  "Fields-Troop_Details.json"
+);
 const RECENT_QUERIES_FILE = path.join(APP_FILES_ROOT, "recentqueries.json");
 
 const CURRENT_YEAR_FILE = path.join(
@@ -23,6 +30,7 @@ module.exports = {
   APP_FILES_ROOT,
   LOG_FILE,
   DOWNLOAD_FOLDER,
-  FIELDS_FILE,
+  FULL_ROSTER_FIELDS_FILE,
   RECENT_QUERIES_FILE,
+  TROOP_FIELDS_FILE,
 };

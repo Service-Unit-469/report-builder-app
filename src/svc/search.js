@@ -1,18 +1,18 @@
 const { ipcMain } = require("electron");
 const fs = require("fs");
 const path = require("path");
-const filter = require("@service-unit-469/report-builder/src/filter");
+const { filter } = require("@service-unit-469/report-builder/src/filter");
 const log = require("../log")();
 
 const {
-  FIELDS_FILE,
+  FULL_ROSTER_FIELDS_FILE,
   DOWNLOAD_FOLDER,
   RECENT_QUERIES_FILE,
 } = require("../constants");
 
 function getFields() {
-  if (fs.existsSync(FIELDS_FILE)) {
-    return JSON.parse(fs.readFileSync(FIELDS_FILE));
+  if (fs.existsSync(FULL_ROSTER_FIELDS_FILE)) {
+    return JSON.parse(fs.readFileSync(FULL_ROSTER_FIELDS_FILE));
   }
   return {};
 }
