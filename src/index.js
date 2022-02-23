@@ -1,4 +1,5 @@
-const { app, BrowserWindow, dialog, ipcMain, shell } = require("electron");
+const { app, BrowserWindow } = require("electron");
+const windowStateKeeper = require("electron-window-state");
 const path = require("path");
 const { settingsHandlers } = require("./svc/settings");
 const generalHandlers = require("./svc/general");
@@ -8,9 +9,15 @@ const searchHandlers = require("./svc/search");
 const syncHandlers = require("./svc/sync");
 
 app.on("ready", () => {
+  const mainWindowState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800,
+  });
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
     webPreferences: {
       nodeIntegration: false, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
@@ -18,6 +25,7 @@ app.on("ready", () => {
       preload: path.join(__dirname, "preload.js"), // use a preload script
     },
   });
+  mainWindowState.manage(mainWindow);
   mainWindow.loadFile(path.join(__dirname, "public/index.html"));
 
   generalHandlers(mainWindow);
