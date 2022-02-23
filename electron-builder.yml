@@ -1,0 +1,11 @@
+appId: "org.service-unit-469.report-builder"
+productName: "GS Data Chair Report Builder"
+mac:
+  category: public.app-category.productivity
+  icon: src/public/icon.icns
+dmg:
+  backgroundColor: "#009966"
+win:
+  icon: src/public/icon.ico
+publish:
+  - github

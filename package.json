@@ -1,6 +1,5 @@
 {
   "name": "report-builder-app",
-  "productName": "GS Data Chair Report Builder",
   "description": "For running searches and reports for Girl Scout Service Unit Data Chair needs",
   "author": "Dan Klco <daniel.klco@gmail.com>",
   "version": "1.0.0-SNAPSHOT",
