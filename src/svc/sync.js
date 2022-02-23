@@ -6,12 +6,15 @@ const LookerDownloader = require("@service-unit-469/looker-downloader");
 const {
   APP_FILES_ROOT,
   DOWNLOAD_FOLDER,
-  FIELDS_FILE,
+  FULL_ROSTER_FIELDS_FILE,
+  TROOPS_FILE,
+  TROOP_FIELDS_FILE,
 } = require("../constants");
 const { getSettings } = require("./settings");
 const log = require("../log")();
 const os = require("os");
 const convert = require("@service-unit-469/report-builder/src/converter");
+const { escapeKey } = require("@service-unit-469/report-builder/src/filter");
 
 // set the path to the downloaded chromium
 const chromiumPath = path.join(APP_FILES_ROOT, "chromium");
@@ -142,7 +145,7 @@ module.exports = function (mainWindow) {
         );
         records.forEach((record) => {
           Object.keys(record).forEach((k) => {
-            const escaped = k.replace(/[ \/\(\)\.]/g, "_");
+            const escaped = escapeKey(k);
             if (!fields[escaped]) {
               fields[escaped] = {
                 values: new Set(),
@@ -156,10 +159,29 @@ module.exports = function (mainWindow) {
       Object.keys(fields).forEach(
         (k) => (fields[k].values = Array.from(fields[k].values).sort())
       );
-      fs.writeFileSync(FIELDS_FILE, JSON.stringify(fields));
+      fs.writeFileSync(FULL_ROSTER_FIELDS_FILE, JSON.stringify(fields));
 
       await downloadAndConvert(troopDetailsId, {}, "Troop-Details");
       await downloader.shutdown();
+
+      const troopFields = {};
+      JSON.parse(fs.readFileSync(TROOPS_FILE)).forEach(troop => {
+          Object.keys(troop).forEach(k => {
+            const escaped = escapeKey(k);
+            if (!troopFields[escaped]) {
+                troopFields[escaped] = {
+                  values: new Set(),
+                  label: k,
+                };
+              }
+              troopFields[escaped].values.add(troop[k]);
+          });
+      })
+      Object.keys(troopFields).forEach(
+        (k) => (troopFields[k].values = Array.from(troopFields[k].values).sort())
+      );
+      fs.writeFileSync(TROOP_FIELDS_FILE, JSON.stringify(troopFields))
+
 
       mainWindow.webContents.send("sync/current", getDownloads());
       mainWindow.webContents.send("sync/done", {

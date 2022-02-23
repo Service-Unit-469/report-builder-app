@@ -1,12 +1,12 @@
 <script>
-  import { query } from "../stores";
+  import { searchQuery } from "../stores";
   export let fields;
   export let recentQueries;
 </script>
 
 <div class="field-group">
   <label for="query">Query</label>
-  <textarea id="query" bind:value={$query} />
+  <textarea id="query" bind:value={$searchQuery} />
   <br />
   <details>
     <summary>Recent Queries</summary>
@@ -14,7 +14,7 @@
       {#each recentQueries as q}
         <li
           on:click={() => {
-            query.set(q);
+            searchQuery.set(q);
           }}
         >
           {q}

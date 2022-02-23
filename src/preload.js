@@ -19,6 +19,8 @@ contextBridge.exposeInMainWorld("api", {
       "sync/clear",
       "sync/getcurrent",
       "sync/sync",
+      "troops/getfields",
+      "troops/gettroops"
     ];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
@@ -36,6 +38,8 @@ contextBridge.exposeInMainWorld("api", {
       "settings/set",
       "sync/current",
       "sync/done",
+      "troops/fields",
+      "troops/troops"
     ];
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender`

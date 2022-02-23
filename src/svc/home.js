@@ -4,12 +4,15 @@ const {
   NEXT_YEAR_FILE,
   LAST_YEAR_FILE,
 } = require("../constants");
-const filter = require("@service-unit-469/report-builder/src/filter");
+const { filter } = require("@service-unit-469/report-builder/src/filter");
 const fs = require("fs");
 
 function uniqueTroopCount(records) {
   const troops = new Set();
-  records.map((r) => r["Troop/Group"]).forEach((t) => troops.add(t));
+  records
+    .map((r) => r["Troop/Group"])
+    .filter((t) => t.indexOf("Troop") !== -1)
+    .forEach((t) => troops.add(t));
   return troops.size;
 }
 

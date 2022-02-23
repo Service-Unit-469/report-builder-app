@@ -7,6 +7,7 @@ const { registerHome } = require("./svc/home");
 const reportsHandlers = require("./svc/reports");
 const searchHandlers = require("./svc/search");
 const syncHandlers = require("./svc/sync");
+const troopsHandlers = require("./svc/troops");
 
 app.on("ready", () => {
   const mainWindowState = windowStateKeeper({
@@ -34,6 +35,7 @@ app.on("ready", () => {
   settingsHandlers(mainWindow);
   syncHandlers(mainWindow);
   searchHandlers(mainWindow);
+  troopsHandlers(mainWindow);
 });
 
 app.on("window-all-closed", () => {

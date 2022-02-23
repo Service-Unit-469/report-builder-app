@@ -2,12 +2,13 @@
   import AdvancedSearch from "../components/AdvancedSearch.svelte";
   import SimpleSearch from "../components/SimpleSearch.svelte";
 
-  import { query as queryStore } from "../stores";
+  import {
+    searchQuery as queryStore,
+    searchParameters as parametersStore,
+  } from "../stores";
 
   let query = "";
-  queryStore.subscribe((nq) => {
-    query = nq;
-  });
+
   let include = "Current";
   let message = "";
   let level = "info";
@@ -15,6 +16,9 @@
   let mode = "simple";
   let current;
   let miscFields = [];
+  queryStore.subscribe((nq) => {
+    query = nq;
+  });
 
   const primaryFields = [
     "Troop/Group",
@@ -114,7 +118,7 @@
 {#if mode === "advanced"}
   <AdvancedSearch {fields} {recentQueries} />
 {:else}
-  <SimpleSearch {fields} />
+  <SimpleSearch {fields} {queryStore} {parametersStore} />
 {/if}
 <div class="field-group">
   <button on:click={run}>Run</button>&nbsp;
@@ -153,7 +157,7 @@
 
     <h3>Contact</h3>
     <dl>
-      {#if current["Phone Number"]}
+      {#if current["Email"]}
         <dt>Email</dt>
         <dd
           on:click={() =>
@@ -240,31 +244,3 @@
     >
   {/if}
 </dialog>
-
-<style>
-  .h-scroll {
-    overflow-x: scroll;
-    max-width: 100%;
-  }
-
-  dialog button {
-    float: right;
-  }
-  dl {
-    padding: 0 0.5em;
-  }
-  dt {
-    float: left;
-    clear: left;
-    text-align: right;
-    font-weight: bold;
-    color: #009966;
-  }
-  dt::after {
-    content: ":";
-  }
-  dd {
-    margin: 0 0 0 180px;
-    padding: 0 0 0.5em 0;
-  }
-</style>
