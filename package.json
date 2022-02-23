@@ -31,6 +31,7 @@
     "@service-unit-469/report-builder": "^1.1.0",
     "filesize": "^8.0.7",
     "keytar": "^7.9.0",
+    "puppeteer": "^13.4.0",
     "winston": "^3.6.0"
   }
 }

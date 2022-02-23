@@ -1,14 +1,45 @@
-const { ipcMain } = require("electron");
+const { app, ipcMain } = require("electron");
 const filesize = require("filesize");
 const fs = require("fs");
 const path = require("path");
 const LookerDownloader = require("@service-unit-469/looker-downloader");
-const { DOWNLOAD_FOLDER, FIELDS_FILE } = require("../constants");
+const {
+  APP_FILES_ROOT,
+  DOWNLOAD_FOLDER,
+  FIELDS_FILE,
+} = require("../constants");
 const { getSettings } = require("./settings");
 const log = require("../log")();
 const os = require("os");
-
 const convert = require("@service-unit-469/report-builder/src/converter");
+
+// set the path to the downloaded chromium
+const chromiumPath = path.join(APP_FILES_ROOT, "chromium");
+const appversion = path.join(APP_FILES_ROOT, "appversion");
+process.env.PUPPETEER_DOWNLOAD_PATH = chromiumPath;
+function downloadChromium() {
+  fs.mkdirSync(chromiumPath, { recursive: true });
+  const puppeteer_install = require("puppeteer/lib/cjs/puppeteer/node/install.js");
+  puppeteer_install
+    .downloadBrowser()
+    .then(() => {
+      log.info("Chromium downloaded successfully!");
+    })
+    .catch((err) => log.error("Failed to download chromium", err));
+}
+
+if (!fs.existsSync(chromiumPath) || !fs.existsSync(appversion)) {
+  log.info("Downloading chromium...");
+  downloadChromium();
+  fs.writeFileSync(appversion, app.getVersion());
+} else if (fs.readFileSync(appversion).toString() !== app.getVersion()) {
+  log.info("Downloading latest chromium...");
+  fs.rmSync(chromiumPath, { recursive: true });
+  downloadChromium();
+  fs.writeFileSync(appversion, app.getVersion());
+} else {
+  log.info("Skipping chromium download");
+}
 
 if (!fs.existsSync(DOWNLOAD_FOLDER)) {
   fs.mkdirSync(DOWNLOAD_FOLDER, { recursive: true });
@@ -21,6 +52,7 @@ function getDownloads() {
       size: filesize(stats.size),
       lastModified: stats.mtime,
       name: f,
+      path: DOWNLOAD_FOLDER + "/" + f,
     };
   });
 }

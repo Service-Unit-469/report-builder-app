@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld("api", {
       "general/open",
       "general/getversion",
       "general/save",
+      "home/getstats",
       "reports/run",
       "search/getfields",
       "search/getrecentqueries",
@@ -26,6 +27,7 @@ contextBridge.exposeInMainWorld("api", {
   receive: (channel, fn) => {
     const validChannels = [
       "general/version",
+      "home/stats",
       "reports/results",
       "search/fields",
       "search/recentqueries",

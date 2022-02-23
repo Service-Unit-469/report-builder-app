@@ -2,6 +2,7 @@ const { app, BrowserWindow, dialog, ipcMain, shell } = require("electron");
 const path = require("path");
 const { settingsHandlers } = require("./svc/settings");
 const generalHandlers = require("./svc/general");
+const { registerHome } = require("./svc/home");
 const reportsHandlers = require("./svc/reports");
 const searchHandlers = require("./svc/search");
 const syncHandlers = require("./svc/sync");
@@ -20,6 +21,7 @@ app.on("ready", () => {
   mainWindow.loadFile(path.join(__dirname, "public/index.html"));
 
   generalHandlers(mainWindow);
+  registerHome(mainWindow);
   reportsHandlers(mainWindow);
   settingsHandlers(mainWindow);
   syncHandlers(mainWindow);
@@ -27,7 +29,5 @@ app.on("ready", () => {
 });
 
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  app.quit();
 });

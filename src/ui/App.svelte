@@ -76,8 +76,8 @@
 <dialog id="setup-required">
   <h2>Setup Required</h2>
   <p>
-    You must configure your Looker username and password. You will now be taken
-    to the settings screen to configure these values.
+    You must configure your Looker username and password.<br />You will now be
+    taken to the settings screen to configure these values.
   </p>
   <p>
     <button

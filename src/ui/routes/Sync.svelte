@@ -44,7 +44,7 @@
   <tbody>
     {#each files as file}
       <tr>
-        <td>
+        <td on:click={() => window.api.send("general/open", `file:${file.path}`)}>
           {file.name}
         </td>
         <td>

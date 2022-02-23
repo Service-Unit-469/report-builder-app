@@ -33,7 +33,13 @@
     },
   ];
   let negate = false;
-  let parameters = [{}];
+  let parameters = [
+    {
+      field: "Troop_Group",
+      operator: "~=",
+      value: "",
+    },
+  ];
   let join = "and";
 
   function addParameter() {
@@ -77,7 +83,9 @@
         >
           {#if fields}
             {#each Array.from(Object.keys(fields)).sort() as fieldId}
-              <option value={fieldId}>{fields[fieldId].label}</option>
+              {#if fieldId !== ""}
+                <option value={fieldId}>{fields[fieldId].label}</option>
+              {/if}
             {/each}
           {/if}
         </select>

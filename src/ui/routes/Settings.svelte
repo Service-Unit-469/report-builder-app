@@ -69,7 +69,12 @@
       id="debugEnabled"
       bind:checked={settings.debugEnabled}
     /><br />
-    <small>Logs can be found at {settings.logPath}</small>
+    <small
+      >Logs can be found at <span
+        on:click={() => window.api.send("general/open", `file:${settings.logPath}`)}
+        >{settings.logPath}</span
+      ></small
+    >
   </div>
   <div class="field-group">
     <label for="lookerHeadful">Show Looker Download?</label>
