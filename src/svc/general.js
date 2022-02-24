@@ -3,9 +3,40 @@ const fs = require("fs");
 const path = require("path");
 const csvStringifier = require("csv-writer").createObjectCsvStringifier;
 const log = require("../log")();
+const { getSettings } = require("./settings");
 
 module.exports = function (mainWindow, browserWindow) {
   ipcMain.on("general/open", (event, url) => {
+    shell.openExternal(url);
+  });
+  ipcMain.on("general/webmail", async (event, records) => {
+    const emails = new Set();
+    records.forEach((record) => {
+      if (record["Preferred Contact Email"]) {
+        emails.add(record["Preferred Contact Email"]);
+      }
+      if (record.Email) {
+        emails.add(record.Email);
+      }
+    });
+    const emailStr = [...emails].join(";");
+
+    const { emailProvider } = await getSettings();
+    let url;
+    switch (emailProvider) {
+      case "gmail":
+        url = `https://mail.google.com/mail/?view=cm&fs=1&bcc=${emailStr}`;
+        break;
+      case "outlook":
+        url = `https://outlook.live.com/mail/0/deeplink/compose?to=${emailStr}`;
+        break;
+      case "yahoo":
+        url = `http://compose.mail.yahoo.com/?bcc=${[...emails].join(",")}`;
+        break;
+      default:
+        url = `mailto:?bcc=${emailStr}`;
+    }
+
     shell.openExternal(url);
   });
 

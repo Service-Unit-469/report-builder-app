@@ -5,18 +5,21 @@
       description:
         "Looks for troops that are found in Last Year that are not found in the Current Year",
       ref: "reports/disbanded-troops.js",
+      email: false,
     },
     {
       name: "Unrenewed Girls",
       description:
         "Looks for girls that are found in Last Year that are not found in the Current Year",
       ref: "reports/dropped-out-girls.js",
+      email: true,
     },
     {
       name: "Troop Discrepancies",
       description:
         "Finds discrepancies between the troops found in the troops report and the troops found by membership",
       ref: "reports/troop-discrepancies.js",
+      email: false,
     },
   ];
   let running = false;
@@ -40,6 +43,8 @@
           data,
           suggest: `${currentReport.name}.csv`,
         });
+      } else if (mode === "email") {
+        window.api.send("general/webmail", data);
       } else {
         viewFields = Object.keys(data[0]);
         viewData = data;
@@ -53,6 +58,11 @@
     level = "info";
     message = `Running report: ${report.name}`;
     window.api.send("reports/run", report);
+  }
+
+  function emailReport(report) {
+    mode = "email";
+    runReport(report);
   }
 
   function viewReport(report) {
@@ -93,6 +103,11 @@
           <button disabled={running} on:click={() => saveReport(report)}
             >&#x1F4C1;</button
           >
+          {#if report.email}
+            <button disabled={running} on:click={() => emailReport(report)}>
+              &#x1F4E7;</button
+            >
+          {/if}
         </td>
       </tr>
     {/each}
