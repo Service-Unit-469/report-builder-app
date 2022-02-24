@@ -44,7 +44,10 @@
   <tbody>
     {#each files as file}
       <tr>
-        <td on:click={() => window.api.send("general/open", `file:${file.path}`)}>
+        <td
+          class="is-linked"
+          on:click={() => window.api.send("general/open", `file:${file.path}`)}
+        >
           {file.name}
         </td>
         <td>

@@ -165,6 +165,7 @@
       {#if current["Email"]}
         <dt>Email</dt>
         <dd
+          class="is-linked"
           on:click={() =>
             window.api.send("general/open", `mailto:${current["Email"]}`)}
         >
@@ -174,6 +175,7 @@
       {#if current["Phone Number"]}
         <dt>Phone</dt>
         <dd
+          class="is-linked"
           on:click={() =>
             window.api.send("general/open", `tel:${current["Phone Number"]}`)}
         >
@@ -182,6 +184,7 @@
       {/if}
       <dt>Address</dt>
       <dd
+        class="is-linked"
         on:click={() =>
           window.api.send(
             "general/open",
@@ -201,6 +204,7 @@
       </h3>
       <dt>Email</dt>
       <dd
+        class="is-linked"
         on:click={() =>
           window.api.send(
             "general/open",
@@ -211,6 +215,7 @@
       </dd>
       <dt>Phone</dt>
       <dd
+        class="is-linked"
         on:click={() =>
           window.api.send(
             "general/open",

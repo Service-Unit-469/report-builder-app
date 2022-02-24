@@ -25,19 +25,34 @@
 <main>
   <nav>
     <div>
-      <div class="nav-item nav-link" on:click={() => (currentView = "home")}>
+      <div
+        class="nav-item nav-link is-linked"
+        on:click={() => (currentView = "home")}
+      >
         Home
       </div>
-      <div class="nav-item nav-link" on:click={() => (currentView = "search")}>
+      <div
+        class="nav-item nav-link is-linked"
+        on:click={() => (currentView = "search")}
+      >
         Search
       </div>
-      <div class="nav-item nav-link" on:click={() => (currentView = "reports")}>
+      <div
+        class="nav-item nav-link is-linked"
+        on:click={() => (currentView = "reports")}
+      >
         Reports
       </div>
-      <div class="nav-item nav-link" on:click={() => (currentView = "troops")}>
+      <div
+        class="nav-item nav-link is-linked"
+        on:click={() => (currentView = "troops")}
+      >
         Troops
       </div>
-      <div class="nav-item nav-link" on:click={() => (currentView = "sync")}>
+      <div
+        class="nav-item nav-link is-linked"
+        on:click={() => (currentView = "sync")}
+      >
         Sync Looker
       </div>
       <div
@@ -47,14 +62,27 @@
         Settings
       </div>
     </div>
-    <div class="nav-item">
-      &copy; 2022 <span
+    <div>
+      <div
+        class="nav-item nav-link is-linked"
         on:click={() =>
-          window.api.send("general/open", `https://www.danklco.com`)}
-        >Dan Klco</span
+          window.api.send(
+            "general/open",
+            "https://github.com/Service-Unit-469/report-builder-ui/issues"
+          )}
       >
-      <br />
-      Version {version}
+        Report a Bug
+      </div>
+      <div class="nav-item">
+        &copy; 2022 <span
+          class="is-linked"
+          on:click={() =>
+            window.api.send("general/open", `https://www.danklco.com`)}
+          >Dan Klco</span
+        >
+        <br />
+        Version {version}
+      </div>
     </div>
   </nav>
   <article>

@@ -68,6 +68,10 @@
   div {
     text-align: center;
   }
+  h2 {
+    font-size: 400%;
+    
+  }
   h2,
   h4 {
     margin: 0;

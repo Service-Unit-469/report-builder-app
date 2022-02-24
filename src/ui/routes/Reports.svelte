@@ -100,13 +100,13 @@
           <button disabled={running} on:click={() => viewReport(report)}
             >&#x1F50D;</button
           >
-          <button disabled={running} on:click={() => saveReport(report)}
-            >&#x1F4C1;</button
-          >
+          <button disabled={running} on:click={() => saveReport(report)}>
+            &#x1F4C1;
+          </button>
           {#if report.email}
             <button disabled={running} on:click={() => emailReport(report)}>
-              &#x1F4E7;</button
-            >
+              &#x1F4E7;
+            </button>
           {/if}
         </td>
       </tr>
@@ -141,7 +141,7 @@
         </tbody>
       </table>
     </div>
-
+    <br />
     <button
       on:click={() => {
         document.getElementById("report-dialog").close();

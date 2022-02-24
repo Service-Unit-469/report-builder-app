@@ -81,6 +81,7 @@
     /><br />
     <small
       >Logs can be found at <span
+        class="is-linked"
         on:click={() =>
           window.api.send("general/open", `file:${settings.logPath}`)}
         >{settings.logPath}</span

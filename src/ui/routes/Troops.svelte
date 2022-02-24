@@ -88,7 +88,10 @@
                 <h5>{role}</h5>
                 <ul>
                   {#each troop.leaders[role.toLowerCase()] as leader}
-                    <li on:click={() => displayLeader(leader)}>
+                    <li
+                      class="is-linked"
+                      on:click={() => displayLeader(leader)}
+                    >
                       {leader["First Name"]}
                       {leader["Last Name"]}
                     </li>
@@ -108,6 +111,7 @@
             {troop["Meeting Location"]}
             {#if troop["Meeting Location Street1 Addr"]}
               <div
+                class="is-linked"
                 on:click={() =>
                   window.api.send(
                     "general/open",
@@ -150,6 +154,7 @@
       {#if currentLeader["Phone Number"]}
         <dt>Email</dt>
         <dd
+          class="is-linked"
           on:click={() =>
             window.api.send("general/open", `mailto:${currentLeader["Email"]}`)}
         >
@@ -159,6 +164,7 @@
       {#if currentLeader["Phone Number"]}
         <dt>Phone</dt>
         <dd
+          class="is-linked"
           on:click={() =>
             window.api.send(
               "general/open",
@@ -170,6 +176,7 @@
       {/if}
       <dt>Address</dt>
       <dd
+        class="is-linked"
         on:click={() =>
           window.api.send(
             "general/open",
@@ -188,7 +195,7 @@
       <dt>Type</dt>
       <dd>{currentLeader["Membership Type"]}</dd>
     </dl>
-
+    <br />
     <button on:click={() => document.getElementById("leader-dialog").close()}
       >OK</button
     >

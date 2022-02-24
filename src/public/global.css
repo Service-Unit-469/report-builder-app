@@ -75,6 +75,31 @@ button:focus {
     border-color: #cccccc;
 }
 
+dd {
+    margin: 0 0 0 180px;
+    padding: 0 0 0.5em 0;
+}
+
+dialog button {
+    float: right;
+}
+
+dl {
+    padding: 0 0.5em;
+}
+
+dt {
+    float: left;
+    clear: left;
+    text-align: right;
+    font-weight: bold;
+    color: #009966;
+}
+
+dt::after {
+    content: ":";
+}
+
 .field-group {
     margin: 1em 0;
 }
@@ -84,6 +109,15 @@ button:focus {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
+}
+
+.h-scroll {
+    overflow-x: scroll;
+    max-width: 100%;
+}
+
+.is-linked {
+    cursor: pointer;
 }
 
 .is-hidden {
@@ -137,34 +171,4 @@ th,
 td {
     text-align: left;
     padding: 0.5em;
-}
-
-.h-scroll {
-    overflow-x: scroll;
-    max-width: 100%;
-}
-
-dialog button {
-    float: right;
-}
-
-dl {
-    padding: 0 0.5em;
-}
-
-dt {
-    float: left;
-    clear: left;
-    text-align: right;
-    font-weight: bold;
-    color: #009966;
-}
-
-dt::after {
-    content: ":";
-}
-
-dd {
-    margin: 0 0 0 180px;
-    padding: 0 0 0.5em 0;
 }
