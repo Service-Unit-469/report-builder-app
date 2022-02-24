@@ -125,9 +125,9 @@
               </div>
             {/if}
             {#if troop["Meeting Notes"]}
-              <pre>
+              <p>
                 {troop["Meeting Notes"]}
-              </pre>
+              </p>
             {/if}
           </td>
           <td>{troop["Girls Assigned"]}</td>
