@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld("api", {
       "general/open",
       "general/getversion",
       "general/save",
+      "general/webmail",
       "home/getstats",
       "reports/run",
       "search/getfields",

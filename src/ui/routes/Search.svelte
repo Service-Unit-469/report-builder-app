@@ -125,6 +125,11 @@
   {#if level === "success"}
     <button on:click={save}>Save</button>
   {/if}
+  {#if level === "success"}
+    <button on:click={() => window.api.send("general/webmail", results)}
+      >Email</button
+    >
+  {/if}
 </div>
 <hr />
 <p class="message {level}">{message}</p>

@@ -59,7 +59,17 @@
       type="text"
       id="troopDetailsId"
       bind:value={settings.looker.troopDetailsId}
-    /><br />
+    />
+  </div>
+  <h2>Email</h2>
+  <div class="field-group">
+    <label for="emailProvider">Email Provider</label>
+    <select id="emailProvider" bind:value={settings.emailProvider}>
+      <option value="mailto">System Default</option>
+      <option value="gmail">Gmail</option>
+      <option value="outlook">Outlook.com/MSN</option>
+      <option value="yahoo">Yahoo</option>
+    </select>
   </div>
   <h2>Debugging</h2>
   <div class="field-group">
@@ -71,7 +81,8 @@
     /><br />
     <small
       >Logs can be found at <span
-        on:click={() => window.api.send("general/open", `file:${settings.logPath}`)}
+        on:click={() =>
+          window.api.send("general/open", `file:${settings.logPath}`)}
         >{settings.logPath}</span
       ></small
     >
