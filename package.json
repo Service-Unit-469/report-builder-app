@@ -2,7 +2,7 @@
   "name": "report-builder-app",
   "description": "For running searches and reports for Girl Scout Service Unit Data Chair needs",
   "author": "Dan Klco <daniel.klco@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/index.js",
   "scripts": {
     "build": "npx rollup  -c",
