@@ -70,7 +70,7 @@
         <th>Meeting Schedule</th>
         <th>Meeting Location</th>
         <th>Assigned</th>
-        <th>Availbility</th>
+        <th>Availability</th>
       </tr>
     </thead>
     <tbody>
@@ -125,9 +125,9 @@
               </div>
             {/if}
             {#if troop["Meeting Notes"]}
-              <p>
-                {troop["Meeting Notes"].replace("\n", "<br/>")}
-              </p>
+              <pre>
+                {troop["Meeting Notes"]}
+              </pre>
             {/if}
           </td>
           <td>{troop["Girls Assigned"]}</td>
