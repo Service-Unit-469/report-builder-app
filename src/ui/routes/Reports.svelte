@@ -7,10 +7,16 @@
       ref: "reports/disbanded-troops.js",
     },
     {
-      name: "Dropped Out Girls",
+      name: "Unrenewed Girls",
       description:
         "Looks for girls that are found in Last Year that are not found in the Current Year",
       ref: "reports/dropped-out-girls.js",
+    },
+    {
+      name: "Troop Discrepancies",
+      description:
+        "Finds discrepancies between the troops found in the troops report and the troops found by membership",
+      ref: "reports/troop-discrepancies.js",
     },
   ];
   let running = false;
